@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
-
+import (
+	  "bufio"
+	   "fmt"
+	   "os"
+)
 func add(x,y int) int {
 	return x+y
 }
@@ -29,6 +32,12 @@ func main(){
 		result := add(4,6)
 		fmt.Println(result)
 
+	// taking input from user 
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("Enter your name: ")
+
+	input, _ := reader.ReadString('\n')
+	fmt.Println("Hello",input)
 
 	
 
