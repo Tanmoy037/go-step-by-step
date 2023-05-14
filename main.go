@@ -3,9 +3,12 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"go/build"
 	"os"
 	"strconv"
 	"strings"
+
+	"time"
 )
 func add(x,y int) int {
 	return x+y
@@ -56,6 +59,18 @@ func main(){
 	} else {
 		fmt.Println("\nAdded 1 to your rating: ", numRating+1)
 	}
+
+	// Time Handling
+	presentTime := time.Now()
+
+	fmt.Println(presentTime.Format("01-02-2006 15:04:05 Monday"))
+
+	// Go build (Need to run in terminal)
+	// GOOS="windows" go build
+	// GOOS="linux" go build	
+
+
+
 
 
 
