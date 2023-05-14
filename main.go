@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"go/build"
 	"os"
 	"strconv"
 	"strings"
@@ -68,6 +67,22 @@ func main(){
 	// Go build (Need to run in terminal)
 	// GOOS="windows" go build
 	// GOOS="linux" go build	
+
+
+	// pointer
+
+	myNumber := 23
+	
+	var ptr = &myNumber
+
+	fmt.Println("Address of myNumber is: ", ptr)
+	fmt.Println("Value of myNumber is: ", *ptr)
+
+	*ptr = *ptr + 2
+
+	fmt.Println("New value of myNumber is: ", myNumber)
+
+
 
 
 
