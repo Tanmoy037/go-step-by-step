@@ -83,16 +83,27 @@ func main(){
 	fmt.Println("New value of myNumber is: ", myNumber)
 
 	//array
-	var fruitList[4]string	
+	// var fruitList[4]string	
 
-	fruitList[0] = "Apple"
-	fruitList[1] = "Banana"
-	fruitList[2] = "Orange"
+	// fruitList[0] = "Apple"
+	// fruitList[1] = "Banana"
+	// fruitList[2] = "Orange"
 	
+	// fmt.Println(fruitList)
+
+
+
+	// slices
+	var fruitList = []string{"Apple","Banana","Orange"}
+	fmt.Printf("Type of fruitlist is %T\n",fruitList)
+
+	fruitList = append(fruitList,"Mango","Banana")
 	fmt.Println(fruitList)
 
+	fruitList = append(fruitList[1:3])
+	fmt.Println(fruitList)
 
-
+	////using sort function we can sort a slice
 
 
 
