@@ -82,6 +82,14 @@ func main(){
 
 	fmt.Println("New value of myNumber is: ", myNumber)
 
+	//array
+	var fruitList[4]string	
+
+	fruitList[0] = "Apple"
+	fruitList[1] = "Banana"
+	fruitList[2] = "Orange"
+	
+	fmt.Println(fruitList)
 
 
 
