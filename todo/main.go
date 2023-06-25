@@ -25,7 +25,7 @@ func main() {
 	fmt.Println("The tasks are:")
 	for _, task := range tasks {
 		fmt.Println(task)
-}
+	}
 
 
 }
