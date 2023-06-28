@@ -10,6 +10,6 @@ resource "aws_rds_instance" "my_instance" {
   allocated_storage = 20
   username = "admin"
   password = "admin123"
-  skip_final_snapshot  = true
+  skip_final_snapshot = true
   publicly_accessible =  true
 }
