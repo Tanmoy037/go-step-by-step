@@ -5,7 +5,7 @@ provider "aws" {
 
 resource "aws_rds_instance" "my_instance" {
   engine = "mysql"
-   identifier = "myrdsinstance"
+  identifier = "myrdsinstance"
   instance_class = "db.t2.micro"
   allocated_storage = 20
   username = "admin"
