@@ -12,8 +12,8 @@ import (
 
 const (
 	dbInstanceEndpoint = " "
-	username           = " "
-	password           = " "
+	username           = "admin"
+	password           = "admin123"
 )
 
 func main() {
