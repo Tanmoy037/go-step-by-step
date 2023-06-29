@@ -1,7 +1,9 @@
 # GO_STEP_BY_STEP
 I am sharing how I am learning go lang step by step,  in this repository.
 
-**todo**/n
+**todo**
+
+
 In the todo project, we are creating an AWS RDS mysql instance using,
 Infrastructure as code tool Terraform and we are taking data and storing 
 data into an AWS RDS Instance. 
