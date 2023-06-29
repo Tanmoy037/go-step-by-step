@@ -1,7 +1,7 @@
 # GO_STEP_BY_STEP
 I am sharing how I am learning go lang step by step,  in this repository.
 
-**todo**
+**todo:-**
 
 
 In the todo project, we are creating an AWS RDS mysql instance using,
