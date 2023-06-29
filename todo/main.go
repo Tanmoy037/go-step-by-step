@@ -11,9 +11,9 @@ import (
 )
 
 const (
-	dbInstanceEndpoint = "mydb.crxoqxzjvfze.ap-south-1.rds.amazonaws.com:3306"
-	username           = "somnath"
-	password           = "rds123456"
+	dbInstanceEndpoint = " "
+	username           = " "
+	password           = " "
 )
 
 func main() {
