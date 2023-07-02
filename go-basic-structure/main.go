@@ -105,6 +105,13 @@ func main(){
 
 	////using sort function we can sort a slice
 
+	//how to remove a value from a slice based on index
+
+	var courses = []string{"Go","Python","Java","C++","ruby"}
+	fmt.Println(courses)
+	var index int = 2
+	courses = append(courses[:index],courses[index+1:]...)
+	fmt.Println(courses)
 
 
 
