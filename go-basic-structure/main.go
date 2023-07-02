@@ -113,9 +113,23 @@ func main(){
 	courses = append(courses[:index],courses[index+1:]...)
 	fmt.Println(courses)
 
+	// Maps in golang
+	fmt.Println("Maps in golang")
 
+	languages := make(map[string]string)
 
-	
+	languages["GO"] = "Golang"
+	languages["PY"] = "Python"
+	languages["JS"] = "Javascript"
 
+	fmt.Println(languages)
+	fmt.Println("Js shorts for: ",languages["JS"])
+	delete(languages,"JS") 
+
+	// loops using map
+
+	for key,value := range languages {
+		fmt.Printf("For key %v, value is %v\n",key,value)
+	}
 	
 }
