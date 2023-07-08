@@ -32,6 +32,12 @@ func main() {
 		fmt.Println("What was that!")
 	}
 
+	// Defer
+
+	defer fmt.Println("World")
+	defer fmt.Println("One")
+	defer fmt.Println("Two")
+	fmt.Println("Hello")
 
 
 
