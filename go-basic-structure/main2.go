@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"net/url"
 	"time"
 )
 
@@ -38,6 +39,23 @@ func main() {
 	defer fmt.Println("One")
 	defer fmt.Println("Two")
 	fmt.Println("Hello")
+
+	//handling url
+
+	const myurl string = "https://google.com"
+	fmt.Println("my url is ", myurl)
+
+	//parsing
+
+	result, _ := url.Parse(myurl)
+	fmt.Println(result.Scheme)
+	fmt.Println(result.Host)
+	fmt.Println(result.Path)
+	fmt.Println(result.Port())
+	fmt.Println(result.RawQuery)
+	
+
+
 
 
 
