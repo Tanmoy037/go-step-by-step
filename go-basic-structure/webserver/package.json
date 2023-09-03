@@ -1,0 +1,21 @@
+{
+  "name": "lcowebserver",
+  "version": "1.0.0",
+  "description": "a web server for golang series",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "webserver",
+    "lco"
+  ],
+  "author": "Hitesh Choudhary",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
