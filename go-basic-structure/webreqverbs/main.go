@@ -4,13 +4,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
 func main() {
 	fmt.Println("This is Webrequest handeling code")
-	PerformGetRequest()
-	PerformPostRequest()
+	// PerformGetRequest()
+	// PerformPostRequest()
+	PerformPostFormRequest()
 }
 func PerformGetRequest() {
 	const myurl = "http://localhost:8000/get"
@@ -51,6 +53,23 @@ func PerformPostRequest() {
 
 	fmt.Println(string(content))
 
+}
 
+func PerformPostFormRequest() {
+	const myurl = "http://localhost:8000/postform"
 
+	data := url.Values{}
+
+	data.Add("firstname", "Tanmoy")
+	data.Add("lastname", "Santra")
+	data.Add("email", "tanmoy@aegiscovenant.com")
+
+	response, err := http.PostForm(myurl, data)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+
+	content, _ := ioutil.ReadAll(response.Body)
+	fmt.Println(string(content))
 }
