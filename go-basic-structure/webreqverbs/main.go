@@ -10,8 +10,8 @@ import (
 
 func main() {
 	fmt.Println("This is Webrequest handeling code")
-	// PerformGetRequest()
-	// PerformPostRequest()
+	PerformGetRequest()
+	PerformPostRequest()
 	PerformPostFormRequest()
 }
 func PerformGetRequest() {
