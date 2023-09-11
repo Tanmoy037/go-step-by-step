@@ -1,6 +1,10 @@
 package main
 
-
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
 
 // Model for course - file
 type Course struct {
@@ -10,7 +14,7 @@ type Course struct {
 	Author      *Author `json:"author"`
 }
 
-type Authon struct {
+type Author struct {
 	Fullname string `json:"fullname"`
 	Website  string `json:"website"`
 }
@@ -23,8 +27,20 @@ func (c *Course) IsEmpty() bool {
 	return c.CourseID == "" && c.CourseName == ""
 }
 
-
-
 func main() {
 
+}
+
+// controllers
+
+// serve home route
+
+func serveHome(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("<h1>Welcome to API by golang</h1>"))
+}
+
+func getAllCourses(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Get all courses")
+	w.Header().Set("Content-Type","application/json")
+	json.NewEncoder(w).Encode(courses)
 }
