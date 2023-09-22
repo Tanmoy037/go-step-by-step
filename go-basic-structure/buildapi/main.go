@@ -34,7 +34,19 @@ func (c *Course) IsEmpty() bool {
 }
 
 func main() {
+	fmt.Println("API - LearngoDev")
+	r := mux.NewRouter()
 
+	//seeding 
+	courses = append(courses, Course{CourseID: "2", CourseName: 
+	"ReactJS", CoursePrice: 299, Author: &Author{Fullname: "Tanmoy
+	Santra", Website: "tanmoysantra.cloud"}})
+	courses = append(courses, Course{CourseID: "4", CourseName: "MERN
+	Stack", CoursePrice: 199, Author: &Author{Fullname: "Tanmoy
+	Santra", Website: "tanmoysantra.cloud"}})
+
+	//listen to a port
+	
 }
 
 // controllers
