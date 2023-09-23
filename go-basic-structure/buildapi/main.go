@@ -45,8 +45,19 @@ func main() {
 	Stack", CoursePrice: 199, Author: &Author{Fullname: "Tanmoy
 	Santra", Website: "tanmoysantra.cloud"}})
 
+
+	//routing
+	r.HandleFunc("/", serveHome).Methods("GET")
+	r.HandleFunc("/courses", getAllCourses).Methods("GET")
+	r.HandleFunc("/course/{id}", getOneCourse).Methods("GET")
+	r.HandleFunc("/course", createOneCourse).Methods("POST")
+	r.HandleFunc("/course/{id}", updateOneCourse).Methods("PUT")
+	r.HandleFunc("/course/{id}", deleteOneCourse).Methods("DELETE")
+
+
 	//listen to a port
-	
+	log.Fatal(http.ListenAndServe(":4000", r))
+
 }
 
 // controllers
