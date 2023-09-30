@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -15,7 +16,7 @@ import (
 type Course struct {
 	CourseID    string  `json: "courseid"`
 	CourseName  string  `json: "coursename"`
-	CoursePrice int     `json: "price"`
+	CoursePrice int     `json: "courseprice"`
 	Author      *Author `json:"author"`
 }
 
@@ -37,14 +38,11 @@ func main() {
 	fmt.Println("API - LearngoDev")
 	r := mux.NewRouter()
 
-	//seeding 
-	courses = append(courses, Course{CourseID: "2", CourseName: 
-	"ReactJS", CoursePrice: 299, Author: &Author{Fullname: "Tanmoy
-	Santra", Website: "tanmoysantra.cloud"}})
-	courses = append(courses, Course{CourseID: "4", CourseName: "MERN
-	Stack", CoursePrice: 199, Author: &Author{Fullname: "Tanmoy
-	Santra", Website: "tanmoysantra.cloud"}})
+	//seeding
+	courses = append(courses, Course{CourseID: "2", CourseName: "ReactJS", CoursePrice: 299, Author: &Author{Fullname: "Tanmoy Santra", Website: "tanmoysantra.cloud"}})
 
+	courses = append(courses, Course{CourseID: "4", CourseName: "MERN Stack", CoursePrice: 199,
+		Author: &Author{Fullname: "Tanmoy Santra", Website: "tanmoysantra.cloud"}})
 
 	//routing
 	r.HandleFunc("/", serveHome).Methods("GET")
@@ -53,7 +51,6 @@ func main() {
 	r.HandleFunc("/course", createOneCourse).Methods("POST")
 	r.HandleFunc("/course/{id}", updateOneCourse).Methods("PUT")
 	r.HandleFunc("/course/{id}", deleteOneCourse).Methods("DELETE")
-
 
 	//listen to a port
 	log.Fatal(http.ListenAndServe(":4000", r))
@@ -79,7 +76,7 @@ func getOneCourse(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	// grab id from request
-	params := mux.Vars()
+	params := mux.Vars(r)
 
 	//loop through courses, find matching id and return the response
 	for _, course := range courses {
@@ -109,6 +106,8 @@ func createOneCourse(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode("No data inside JSON")
 		return
 	}
+	// TODO: check only if the title is duplicate
+	// loop, title matches with course.coursename, JSON
 
 	// generate unique id, string
 	// append course into courses
@@ -121,7 +120,7 @@ func createOneCourse(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func updateOneCourse (w http.ResponseWriter, r *http.Request){
+func updateOneCourse(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Update one course")
 	w.Header().Set("Content-Type", "application/json")
 
@@ -131,13 +130,13 @@ func updateOneCourse (w http.ResponseWriter, r *http.Request){
 	// loop, id , remove, add with my ID
 
 	for index, course := range courses {
-		if course.CourseID == params["id"]{
+		if course.CourseID == params["id"] {
 			courses = append(courses[:index], courses[index+1:]...)
 			var course Course
 			_ = json.NewDecoder(r.Body).Decode(&course)
 			course.CourseID = params["id"]
 			course.CourseID = params["id"]
-			courses = append(courses,course)
+			courses = append(courses, course)
 			json.NewEncoder(w).Encode(course)
 			return
 		}
@@ -147,7 +146,7 @@ func updateOneCourse (w http.ResponseWriter, r *http.Request){
 
 func deleteOneCourse(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Delete one course")
-	w.Header().Set("Content-Type","application/json")
+	w.Header().Set("Content-Type", "application/json")
 
 	params := mux.Vars(r)
 
@@ -155,13 +154,10 @@ func deleteOneCourse(w http.ResponseWriter, r *http.Request) {
 
 	for index, course := range courses {
 		if course.CourseID == params["id"] {
-			courses = append(courses[ :index], courses[index+1:]...)
+			courses = append(courses[:index], courses[index+1:]...)
+			// TODO: send a confirm or deny response
 			break
 		}
 	}
-
-
-
-
 
 }
