@@ -39,7 +39,8 @@ func main() {
 	r := mux.NewRouter()
 
 	//seeding
-	courses = append(courses, Course{CourseID: "2", CourseName: "ReactJS", CoursePrice: 299, Author: &Author{Fullname: "Tanmoy Santra", Website: "tanmoysantra.cloud"}})
+	courses = append(courses, Course{CourseID: "2", CourseName: "ReactJS", CoursePrice: 299,
+	    Author: &Author{Fullname: "Tanmoy Santra", Website: "tanmoysantra.cloud"}})
 
 	courses = append(courses, Course{CourseID: "4", CourseName: "MERN Stack", CoursePrice: 199,
 		Author: &Author{Fullname: "Tanmoy Santra", Website: "tanmoysantra.cloud"}})
@@ -134,7 +135,6 @@ func updateOneCourse(w http.ResponseWriter, r *http.Request) {
 			courses = append(courses[:index], courses[index+1:]...)
 			var course Course
 			_ = json.NewDecoder(r.Body).Decode(&course)
-			course.CourseID = params["id"]
 			course.CourseID = params["id"]
 			courses = append(courses, course)
 			json.NewEncoder(w).Encode(course)
