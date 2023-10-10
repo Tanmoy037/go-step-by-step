@@ -67,7 +67,7 @@ func updateOneMovie(movieId string) {
 
 }
 
-//delete all record
+//delete 1 record
 
 func deleteOneMovie(movieId string) {
 	id, _ := primitive.ObjectIDFromHex(movieId)
@@ -94,3 +94,27 @@ func deleteAllMovie() int64 {
 	return deleteReult.DeletedCount
 
 }
+
+// get all movies from database
+
+func getAllMovies() []primitive.M {
+	cur, err := collection.Find(context.Background(), bson.D{{}})
+	if err != nil {
+		log.Fatal(err)
+	}
+	var movies []primitive.M
+
+	for cur.Next(context.Background()){
+		var movie bson.M
+		err := cur.Decode(&movie)
+		if err != nil {
+			log.Fatal(err)
+		}
+		movies = append(movies, movie)
+	}
+
+	defer cur.Close(context.Background())
+	return movies
+
+}
+
