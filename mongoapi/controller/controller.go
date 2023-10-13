@@ -36,7 +36,7 @@ func init() {
 	}
 	fmt.Println("MongoDB connection success")
 
-	collection = client.Database(dbName).Collection(colName)
+	collection = client.Database("dbName").Collection(colName)
 
 	//collection instance
 	fmt.Println("Collection instance is ready")
@@ -87,13 +87,13 @@ func deleteOneMovie(movieId string) {
 // delete all records from mongodb
 
 func deleteAllMovie() int64 {
-	deleteReult, err := collection.DeleteMany(context.Background(), bson.D{{}},nil)
+	deleteReult, err := collection.DeleteMany(context.Background(), bson.D{{}}, nil)
 
-	if err!= nil{
+	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Number of movies delete: ",deleteReult.DeletedCount)
+	fmt.Println("Number of movies delete: ", deleteReult.DeletedCount)
 	return deleteReult.DeletedCount
 
 }
@@ -107,7 +107,7 @@ func getAllMovies() []primitive.M {
 	}
 	var movies []primitive.M
 
-	for cur.Next(context.Background()){
+	for cur.Next(context.Background()) {
 		var movie bson.M
 		err := cur.Decode(&movie)
 		if err != nil {
@@ -129,9 +129,9 @@ func GetMyAllMovies(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(allMovies)
 }
 
-func CreateMovie(w http.ResponseWriter, r *http.Request){
+func CreateMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www=form-urlencode")
-	w.Header().Set("Allow-Control-Allow-Methods","POST")
+	w.Header().Set("Allow-Control-Allow-Methods", "POST")
 
 	var movie model.Netflix
 	_ = json.NewDecoder(r.Body).Decode(&movie)
@@ -141,7 +141,7 @@ func CreateMovie(w http.ResponseWriter, r *http.Request){
 
 func MarkAsWatched(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www=form-urlencode")
-	w.Header().Set("Allow-Control-Allow-Methods","PUT")
+	w.Header().Set("Allow-Control-Allow-Methods", "PUT")
 
 	params := mux.Vars(r)
 	updateOneMovie(params["id"])
@@ -151,7 +151,7 @@ func MarkAsWatched(w http.ResponseWriter, r *http.Request) {
 
 func DeleteAMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www=form-urlencode")
-	w.Header().Set("Allow-Control-Allow-Methods","DELETE")
+	w.Header().Set("Allow-Control-Allow-Methods", "DELETE")
 
 	params := mux.Vars(r)
 	deleteOneMovie(params["id"])
@@ -161,7 +161,7 @@ func DeleteAMovie(w http.ResponseWriter, r *http.Request) {
 
 func DeleteAllMovies(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www=form-urlencode")
-	w.Header().Set("Allow-Control-Allow-Methods","DELETE")
+	w.Header().Set("Allow-Control-Allow-Methods", "DELETE")
 
 	count := deleteAllMovie()
 	json.NewEncoder(w).Encode(count)
@@ -170,4 +170,4 @@ func DeleteAllMovies(w http.ResponseWriter, r *http.Request) {
 
 
 
-
+//// changes need : in respose body ID is showing 00000000000 , it should show the original what is add in the db.
