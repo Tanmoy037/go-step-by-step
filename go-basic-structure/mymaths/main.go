@@ -8,7 +8,7 @@ import (
 
 
 func main(){
-	fmt.Println("Generating randim number using crypto: ")
+	fmt.Println("Generating random number using crypto: ")
 	myRandomNum, _ := rand.Int(rand.Reader, big.NewInt(5))
 	fmt.Println(myRandomNum)
 }
